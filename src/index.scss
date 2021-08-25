@@ -1,0 +1,33 @@
+@import 'node_modules/nhsuk-frontend/packages/nhsuk';
+
+.progress-container {
+  margin-left: 100px;
+  position: relative;
+  height: 600px;
+  width: 50px;
+  background: white;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: $color_nhsuk-blue;
+  transition: height 0.5s ease-in-out;
+}
+
+.total-text {
+  position: absolute;
+  top: 0;
+  left: 60px;
+  margin-top: -12px;
+}
+
+.progress-text {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -12px;
+  right: 60px;
+  transition: bottom 0.5s ease-in-out;
+}
