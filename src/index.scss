@@ -3,6 +3,7 @@ html, body, #root {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #ffffff;
 }
 
 div {
@@ -25,13 +26,13 @@ div {
 }
 
 .todo {
-  background: red
+  background: #0072cd
 }
 
 .inProgress {
-  background: orange
+  background: #015eb8
 }
 
 .done {
-  background: green
+  background: #003087
 }
