@@ -34,19 +34,23 @@ function App() {
   const getData = async () => {
     try {
       const { data: { cardsData } } = await axios.get(`/.netlify/functions/data`);
+
+      const cards = cardsData.filter(({ idList }) => idList !== '60eef3404365e00bae73079a');
       let state = { ...defaultState };
 
-      cardsData.forEach((card) => {
-        let status = 'inProgress';
-        if (defaultState.todo.keys.includes(card.idList)) status = 'todo';
-        if (defaultState.done.keys.includes(card.idList)) status = 'done';
+      cards.forEach((card) => {
+        if (card.idList !== '60eef3404365e00bae73079a') {
+          let status = 'inProgress';
+          if (defaultState.todo.keys.includes(card.idList)) status = 'todo';
+          if (defaultState.done.keys.includes(card.idList)) status = 'done';
 
-        const count = state[status].count + 1
-        state[status] = {
-          ...state[status],
-          count,
-          percentage: `${(count / cardsData.length * 100).toFixed(2)}%`,
-          total: `${count} / ${cardsData.length}`
+          const count = state[status].count + 1
+          state[status] = {
+            ...state[status],
+            count,
+            percentage: `${(count / cards.length * 100).toFixed(2)}%`,
+            total: `${count} / ${cards.length}`
+          }
         }
       });
 
