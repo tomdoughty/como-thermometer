@@ -25,6 +25,7 @@ const defaultState = {
       '60f05359cad30c2c74be3b1b'
     ],
   },
+  loaded: false,
 }
 
 function App() {
@@ -44,9 +45,12 @@ function App() {
         state[status] = {
           ...state[status],
           count,
-          percentage: `${(count / cardsData.length * 100).toFixed(2)}%`
+          percentage: `${(count / cardsData.length * 100).toFixed(2)}%`,
+          total: `${count} / ${cardsData.length}`
         }
       });
+
+      state.loaded = true;
 
       setState(state);
     }
@@ -61,9 +65,12 @@ function App() {
 
   return (
     <>
-      { Object.entries(state).map(([key, value]) => (
+      { state.loaded && Object.entries(state).map(([key, value]) => (
         <div key={key} className={key} style={{ height: value.percentage }}>
-          <span>{ value.display } { value.percentage }</span>
+          <h1>
+            <b>{ value.display }</b> 
+            <span>{ value.percentage } - { value.total }</span>
+          </h1>
         </div>
       ))}
     </>
