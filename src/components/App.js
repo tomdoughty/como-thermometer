@@ -9,7 +9,8 @@ const defaultState = {
     keys: [
       '60eeb18b9eb2b908e846d248',
       '60eeb190800ce3469f94eb3d',
-      '6114e871130fd765a7d5fafe'
+      '6114e871130fd765a7d5fafe',
+      '60fe81d433fb308ad028324e',
     ],
   },
   inProgress: {
@@ -22,7 +23,7 @@ const defaultState = {
     count: 0,
     percentage: 0,
     keys: [
-      '60f05359cad30c2c74be3b1b'
+      '60f05359cad30c2c74be3b1b',
     ],
   },
   loaded: false,
