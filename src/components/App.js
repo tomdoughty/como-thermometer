@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const defaultState = {
   todo: {
-    display: 'Todo',
+    display: 'To do',
     count: 0,
     percentage: 0,
     keys: [
@@ -25,12 +25,12 @@ const defaultState = {
     keys: [
       '60f05359cad30c2c74be3b1b',
     ],
-  },
-  loaded: false,
+  }
 }
 
 function App() {
   const [state, setState] = useState(defaultState);
+  const [loaded, setLoaded ] = useState(false);
 
   const getData = async () => {
     try {
@@ -49,14 +49,13 @@ function App() {
           state[status] = {
             ...state[status],
             count,
-            percentage: `${(count / cards.length * 100).toFixed(2)}%`,
+            percentage: count / cards.length * 100,
             total: `${count} / ${cards.length}`
           }
         }
       });
 
-      state.loaded = true;
-
+      setLoaded(true);
       setState(state);
     }
     catch(error) {
@@ -70,11 +69,11 @@ function App() {
 
   return (
     <>
-      { state.loaded && Object.entries(state).map(([key, value]) => (
-        <div key={key} className={key} style={{ height: value.percentage }}>
+      { loaded && Object.entries(state).map(([key, value]) => (
+        <div key={key} className={key} style={{ height: `${value.percentage}%` }}>
           <h1>
             <b>{ value.display }</b> 
-            <span>{ value.percentage } - { value.total }</span>
+            <span>{ Math.round(value.percentage) }% - { value.total }</span>
           </h1>
         </div>
       ))}
